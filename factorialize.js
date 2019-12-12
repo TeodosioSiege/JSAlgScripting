@@ -9,15 +9,19 @@ return num;
 }
 
 
-console.log(factorialize(5));
-console.log(factorialize(10));
-console.log(factorialize(20));
-console.log(factorialize(0));
+// console.log(factorialize(5));
+// console.log(factorialize(10));
+// console.log(factorialize(20));
+// console.log(factorialize(0));
 
 
 
 const factorializev2 = num => {
-  if (num==0) {
+  if (num== 0) {
     return 1;
+  } else {
+    return num * factorializev2(num - 1);
   }
 }
+
+console.log(factorializev2(6));
