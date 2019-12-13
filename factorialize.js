@@ -24,4 +24,12 @@ const factorializev2 = num => {
   }
 }
 
-console.log(factorializev2(6));
+const factorializev3 = (num, factorial = 1) => {
+    if (num == 0){
+      return factorial;
+    }else {
+      return factorializev3(num - 1, factorial * num);
+    }
+}
+
+console.log(factorializev3(5));
