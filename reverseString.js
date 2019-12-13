@@ -8,6 +8,13 @@ function reverseString(str) {
   return str;
 }
 
-console.log(reverseString("hello"));
-console.log(reverseString("Howdy"));
-console.log(reverseString("Greetings from Earth"));
+const reverseStringv2 =  str => {
+  
+  return str.split("")
+            .reverse()
+            .join("");
+}
+
+console.log(reverseStringv2("hello"));
+console.log(reverseStringv2("Howdy"));
+console.log(reverseStringv2("Greetings from Earth"));
