@@ -8,3 +8,15 @@ function repeatStringNumTimes(str, num) {
 }
 
 console.log(repeatStringNumTimes("abc", 3));
+
+
+const repeatStringNumTimesv2 = (str, num) => {
+  if (num < 1) {
+    return "";
+  } else {
+    return str + repeatStringNumTimesv2(str, num - 1);
+  }
+}
+
+console.log(repeatStringNumTimesv2('hi',2));
+
