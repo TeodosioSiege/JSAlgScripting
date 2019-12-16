@@ -19,3 +19,11 @@ const findLongestWordLengthv2 = str => {
 
 
 console.log(findLongestWordLengthv2("The quick brown fox jumped over the lazy dog"));
+
+
+const findLongestWordLengthv3 = str => {
+  return Math.max(...str.split(" ").map(word => word.length));
+}
+
+console.log(findLongestWordLengthv3("The quick brown fox jumped over the lazy dog"));
+
