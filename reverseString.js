@@ -15,6 +15,23 @@ const reverseStringv2 =  str => {
             .join("");
 }
 
-console.log(reverseStringv2("hello"));
-console.log(reverseStringv2("Howdy"));
-console.log(reverseStringv2("Greetings from Earth"));
+const reverseStringv3 = str => {
+  let reversedString = "";
+  for (let i = str.length - 1; i >= 0; i-- ) {
+    reversedString += str[i];
+  }
+  return reversedString;
+}
+
+const reverseStringv4 = str => {
+  if (str.length == 1) {
+    return str;
+  } else {
+    let reversedString = str[str.length - 1] + reverseStringv4(str.slice(0,str.length - 1));
+    return reversedString;
+  }
+}
+
+console.log(reverseStringv4('hello'));
+console.log(reverseStringv4('Howdy'));
+console.log(reverseStringv4('Greetings from Earth'));
