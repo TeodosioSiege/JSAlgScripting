@@ -32,4 +32,9 @@ const factorializev3 = (num, factorial = 1) => {
     }
 }
 
-console.log(factorializev3(5));
+// const factorializev4 = (num, factorial = 1) => {
+//   return new Array(num)
+//   .fill(undefined);
+// }
+
+console.log(factorializev4(5));
