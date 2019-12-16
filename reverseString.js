@@ -32,6 +32,14 @@ const reverseStringv4 = str => {
   }
 }
 
-console.log(reverseStringv4('hello'));
-console.log(reverseStringv4('Howdy'));
-console.log(reverseStringv4('Greetings from Earth'));
+const reverseStringv5 = (str, reversedString = "") => {
+    if (str.length == 0) {
+      return reversedString;
+    } else {
+      return reverseStringv5(str.slice(0,str.length - 1),reversedString += str[str.length - 1]);
+    }
+}
+console.log(reverseStringv5('hi'));
+console.log(reverseStringv5('hello'));
+console.log(reverseStringv5('Howdy'));
+console.log(reverseStringv5('Greetings from Earth'));
