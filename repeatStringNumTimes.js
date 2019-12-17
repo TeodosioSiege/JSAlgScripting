@@ -18,5 +18,19 @@ const repeatStringNumTimesv2 = (str, num) => {
   }
 }
 
-console.log(repeatStringNumTimesv2('hi',2));
+console.log(repeatStringNumTimesv2('hi',1));
 
+const repeatStringNumTimesv3 = (str, num) => {
+  let newStr = "";
+  while (num > 0) {
+    newStr+= str;
+    num--;
+  }
+  return newStr;
+}
+
+console.log(repeatStringNumTimesv3('hi',3));
+
+const repeatStringNumTimesv4 = () => {
+  return true;
+}
