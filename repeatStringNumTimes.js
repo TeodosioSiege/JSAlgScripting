@@ -31,6 +31,8 @@ const repeatStringNumTimesv3 = (str, num) => {
 
 console.log(repeatStringNumTimesv3('hi',3));
 
-const repeatStringNumTimesv4 = () => {
-  return true;
+const repeatStringNumTimesv4 = (str,num) => {
+  return str > 0 ? str.repeat(num) : "";
 }
+
+console.log(repeatStringNumTimesv4('4th',4));
