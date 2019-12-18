@@ -10,3 +10,9 @@ function bouncer(arr) {
 }
 
 console.log(bouncer([7, "ate", "", false, 9]));
+
+
+const bouncerv2 = arr => {
+  return arr.filter(Boolean);
+}
+console.log(bouncerv2([7, "ate", "", false, 9]));
