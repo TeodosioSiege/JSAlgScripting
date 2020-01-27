@@ -17,5 +17,12 @@ const sumAllv2 = arr => {
   return sum;
 }
 
-sumAllv2([4,1]);
+//sumAllv2([4,1]);
 
+const sumAllv3 = (arr,sum = Math.min(...arr)) => {
+  return Math.min(...arr) == Math.max(...arr) ? 
+     sum :
+     sumAllv3([Math.min(...arr) + 1 ,Math.max(...arr)], sum += Math.min(...arr) + 1);
+  
+}
+console.log(sumAllv3([4,1]));
