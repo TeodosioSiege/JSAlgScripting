@@ -17,14 +17,15 @@ function smallestCommons(arr) {
   const gcf = (arr1, arr2) => {
     let returnVal = 1;
     let mutablearr2 = [...arr2];
-    if(mutablearr2.includes(arr1[0])){
-      returnVal *= arr1[0];
-      console.log(mutablearr2.indexOf(arr1[0]));
-    }
-    console.log(returnVal);
-    console.log(mutablearr2);
+    for(let i = 0; i < arr1.length; i++){if(mutablearr2.includes(arr1[i])){
+      returnVal *= arr1[i];
+      let itemRemove = mutablearr2.indexOf(arr1[0]);
+      let start = mutablearr2.slice(0,itemRemove);
+      let end = mutablearr2.slice(itemRemove + 1);
+      mutablearr2 = start.concat(end);
+    }}
+     return returnVal;
   }
-  gcf([2,2],[2,2,2]);
 }
 
 
