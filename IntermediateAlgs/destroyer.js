@@ -1,13 +1,13 @@
-function destroyer(arr,...args) {
+function destroyer(arr, ...args) {
   // Remove all the values
   let argArr = [...args];
   let newArr = [];
-  for(let i = 0; i < arr.length; i++){
-    if(!argArr.includes(arr[i])){
+  for (let i = 0; i < arr.length; i++) {
+    if (!argArr.includes(arr[i])) {
       newArr.push(arr[i]);
     }
   }
-  
+
   return newArr;
 }
 
