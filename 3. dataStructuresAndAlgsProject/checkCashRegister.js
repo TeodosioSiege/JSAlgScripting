@@ -1,41 +1,81 @@
 function checkCashRegister(price, cash, cid) {
-  var change = cash - price;
+  let change = cash - price;
+  let cidObj = {};
+  cid.forEach(arr => (cidObj[arr[0]] = arr[1]));
   let returnObj = {};
   let remainingVal = change;
-  // Here is your change, ma'am.
   let totalValue = cid
     .map(arr => arr[1])
     .reduce((a, b) => a + b)
     .toFixed(2);
-  //let cidObj = {};
-  //check status
+  const denomObj = {
+    "ONE HUNDRED": 100,
+    TWENTY: 20,
+    TEN: 10,
+    FIVE: 5,
+    ONE: 1,
+    QUARTER: 0.25,
+    DIME: 0.1,
+    NICKEL: 0.05,
+    PENNY: 0.01
+  };
+  //check status key
   if (totalValue > change) {
     returnObj["status"] = "OPEN";
   } else if (totalValue < change) {
     returnObj["status"] = "INSUFFICIENT_FUNDS";
+    returnObj["change"] = [];
+    return returnObj;
   } else {
     returnObj["status"] = "CLOSED";
+    returnObj["change"] = cid;
+    return returnObj;
   }
   //check change key
+  console.log(change);
   returnObj["change"] = [];
-  if (remainingVal > 100) {
-    returnObj["change"].push(["ONE HUNDRED", change]);
-  } else if (remainingVal > 20) {
-    returnObj["change"].push(["TWENTY", change]);
-  } else if (remainingVal > 10) {
-    returnObj["change"].push(["TEN", change]);
-  } else if (remainingVal > 5) {
-    returnObj["change"].push(["FIVE", change]);
-  } else if (remainingVal > 1) {
-    returnObj["change"].push(["ONE", change]);
-  } else if (remainingVal > 0.25) {
-    returnObj["change"].push(["QUARTER", change]);
-  } else if (remainingVal > 0.1) {
-    returnObj["change"].push(["DIME", change]);
-  } else if (remainingVal > 0.5) {
-    returnObj["change"].push(["NICKEL", change]);
-  } else if (remainingVal > 0.01) {
-    returnObj["change"].push(["PENNY", change]);
+  const cashCal = denomination => {
+    if (remainingVal > cidObj[denomination]) {
+      remainingVal -= cidObj[denomination];
+      remainingVal = remainingVal.toFixed(2);
+      returnObj["change"].push([denomination, cidObj[denomination]]);
+      cidObj[denomination] = 0;
+    } else if (remainingVal < cidObj[denomination]) {
+      returnObj["change"].push([
+        denomination,
+        Math.floor((remainingVal / denomObj[denomination]).toFixed(2)) *
+          denomObj[denomination]
+      ]);
+      remainingVal = (remainingVal % denomObj[denomination]).toFixed(2);
+    }
+  };
+
+  while (remainingVal > 0) {
+    if (remainingVal > 100 && cidObj["ONE HUNDRED"] > 0) {
+      cashCal("ONE HUNDRED");
+    } else if (remainingVal > 20 && cidObj["TWENTY"] > 0) {
+      cashCal("TWENTY");
+    } else if (remainingVal > 10 && cidObj["TEN"] > 0) {
+      cashCal("TEN");
+    } else if (remainingVal > 5 && cidObj["FIVE"] > 0) {
+      cashCal("FIVE");
+    } else if (remainingVal > 1 && cidObj["ONE"] > 0) {
+      cashCal("ONE");
+    } else if (remainingVal > 0.25 && cidObj["QUARTER"] > 0) {
+      cashCal("QUARTER");
+    } else if (remainingVal > 0.1 && cidObj["DIME"] > 0) {
+      cashCal("DIME");
+    } else if (remainingVal > 0.5 && cidObj["NICKEL"] > 0) {
+      cashCal("NICKEL");
+    } else if (
+      remainingVal > 0.01 &&
+      cidObj["PENNY"] > 0 &&
+      cidObj["PENNY"] > remainingVal
+    ) {
+      cashCal("PENNY");
+    } else {
+      return { status: "INSUFFICIENT_FUNDS", change: [] };
+    }
   }
 
   console.log(returnObj);
